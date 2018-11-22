@@ -34,4 +34,12 @@ public class School {
     public void addCourses(course newCourse) {
         courses.add(newCourse);
     }
+
+    public boolean checkStartDate(Date schoolStart, Date courseStart) throws CourseDateException{
+        if (courseStart.after(schoolStart)) {
+            return true;
+        } else
+            throw new CourseDateException("Course didn't start after School!");
+
+    }
 }

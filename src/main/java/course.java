@@ -7,8 +7,16 @@ public class course {
 
     public course(String name, Date startDate, Date endDate) {
         this.name = name;
+
         this.startDate = startDate;
-        this.endDate = endDate;
+        try {
+            if(checkEndDate(startDate,endDate))
+                this.endDate = endDate;
+        } catch (CourseDateException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public String getName() {
@@ -22,5 +30,15 @@ public class course {
     public Date getEndDate() {
         return endDate;
     }
+
+
+    public boolean checkEndDate(Date dates, Date dates2) throws CourseDateException{
+        if(dates2.after(dates)){
+            return true;
+        }
+        else
+            throw new CourseDateException("End date is not after the Start date!");
+    }
+
 }
 
